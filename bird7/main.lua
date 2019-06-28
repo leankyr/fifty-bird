@@ -90,6 +90,8 @@ function love.load()
     -- initialize input table
     love.keyboard.keysPressed = {}
 end
+ft of the second lower pipe
+ 25     self.y = y
 
 function love.resize(w, h)
     push:resize(w, h)

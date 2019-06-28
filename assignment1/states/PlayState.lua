@@ -22,7 +22,14 @@ function PlayState:init()
     self.pipePairs = {}
     self.timer = 0
     self.score = 0
-
+    -- randomize the gap between the pipes
+    -- the pipes here spawn every two seconds
+    -- what we want to do is make them spawn between 1.5 second and 2.5
+    -- math.random generates a real number between 0 and 1
+    -- so in the way bellow we get the effect we want
+    self.spawnInterval = 1.5 + math.random()
+    -- print for debugging purposes
+    print('spawnInterval is:', self.spawnInterval)
     -- initialize our last recorded Y value for a gap placement to base other gaps off of
     self.lastY = -PIPE_HEIGHT + math.random(80) + 20
 end
@@ -32,7 +39,18 @@ function PlayState:update(dt)
     self.timer = self.timer + dt
 
     -- spawn a new pipe pair every second and a half
-    if self.timer > 2 then
+        -- spawnInterval = 1.5 + math.random() 
+    -- print('spawnInterval is:', spawnInterval)
+    if self.timer > self.spawnInterval then
+      -- rerandomize the interval
+      -- Should I pass the interval as an argument to the update dt function???
+      -- is it better design approach???
+      -- but how ??
+      -- Should I use randomseed instead??
+      self.spawnInterval = 1.5 + math.random()
+      -- print for debugging purposes
+      print('spawnInterval is:', self.spawnInterval)
+
         -- modify the last Y coordinate we placed so pipe gaps aren't too far apart
         -- no higher than 10 pixels below the top edge of the screen,
         -- and no lower than a gap length (90 pixels) from the bottom
