@@ -12,10 +12,14 @@
 Pipe = Class{}
 
 -- since we only want the image loaded once, not per instantation, define it externally
+-- If after instantation we would get new memory allocated which is not good design practise
+-- In the bird class it does not make a difference since we only spawn one bird ever
 local PIPE_IMAGE = love.graphics.newImage('pipe.png')
 
+-- the scroll rate similar logic to the ground and background scroll from before
 local PIPE_SCROLL = -60
 
+-- and here is our constructor
 function Pipe:init()
     self.x = VIRTUAL_WIDTH
 

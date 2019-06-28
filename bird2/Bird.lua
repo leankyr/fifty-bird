@@ -17,10 +17,13 @@ function Bird:init()
     self.height = self.image:getHeight()
 
     -- position bird in the middle of the screen
+    -- like when we drew the ball in the middle of the screen 
+    -- in pong. This happens with the variables below
     self.x = VIRTUAL_WIDTH / 2 - (self.width / 2)
     self.y = VIRTUAL_HEIGHT / 2 - (self.height / 2)
 end
 
+    -- again here we draw the bird on the screen
 function Bird:render()
     love.graphics.draw(self.image, self.x, self.y)
 end

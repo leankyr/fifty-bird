@@ -85,6 +85,8 @@ function love.load()
     love.graphics.setFont(flappyFont)
 
     -- initialize our table of sounds
+    -- This sounds table is global
+    -- it is visible from all the files
     sounds = {
         ['jump'] = love.audio.newSource('jump.wav', 'static'),
         ['explosion'] = love.audio.newSource('explosion.wav', 'static'),

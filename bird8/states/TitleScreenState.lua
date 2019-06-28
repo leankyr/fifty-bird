@@ -8,6 +8,8 @@
     display "Press Enter" and also our highest score.
 ]]
 
+
+-- This is inheritance feature
 TitleScreenState = Class{__includes = BaseState}
 
 function TitleScreenState:update(dt)

@@ -27,6 +27,7 @@ function PipePair:init(y)
     }
 
     -- whether this pipe pair is ready to be removed from the scene
+    -- !! Don't delete when you iterate over a table causes buggy behavour
     self.remove = false
 end
 

@@ -46,6 +46,7 @@ function Bird:update(dt)
 
     if love.keyboard.wasPressed('space') then
         self.dy = -5
+        -- This sound line comes from main which has the global sound table
         sounds['jump']:play()
     end
 

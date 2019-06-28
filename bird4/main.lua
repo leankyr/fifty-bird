@@ -67,6 +67,7 @@ function love.load()
     })
 
     -- initialize input table
+    -- love.keyboard is a table and we assign an new table keysPressed
     love.keyboard.keysPressed = {}
 end
 
@@ -74,8 +75,11 @@ function love.resize(w, h)
     push:resize(w, h)
 end
 
+-- This function checks if a key was pressed by the user
+-- This is a callback function
 function love.keypressed(key)
     -- add to our table of keys pressed this frame
+    -- it populates the table from above
     love.keyboard.keysPressed[key] = true
     
     if key == 'escape' then
@@ -85,8 +89,9 @@ end
 
 --[[
     New function used to check our global input table for keys we activated during
-    this frame, looked up by their string value.
+    this last frame, looked up by their string value.
 ]]
+-- These things seem to run every frame
 function love.keyboard.wasPressed(key)
     if love.keyboard.keysPressed[key] then
         return true

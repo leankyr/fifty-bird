@@ -113,12 +113,20 @@ function love.update(dt)
     groundScroll = (groundScroll + GROUND_SCROLL_SPEED * dt) 
         % VIRTUAL_WIDTH
 
+    -- dt is 1 fraction of second so dt = 1/60 sec
+    -- this spawnTimer counts seconds after all
     spawnTimer = spawnTimer + dt
 
     -- spawn a new Pipe if the timer is past 2 seconds
     if spawnTimer > 2 then
+    -- to add stuff in tables we use insert
+    -- Pipe() is how we instantiate and object
+    -- now we keep track of the pipes and below we remove the ones we do not need
+    -- (those not visible)
+    -- in this way we are able to save memory
         table.insert(pipes, Pipe())
         print('Added new pipe!')
+        -- if we did not do this obviously we would clog our world
         spawnTimer = 0
     end
 
@@ -131,6 +139,7 @@ function love.update(dt)
 
         -- if pipe is no longer visible past left edge, remove it from scene
         if pipe.x < -pipe.width then
+           -- table.remove takes a table and a key 
             table.remove(pipes, k)
         end
     end

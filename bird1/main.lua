@@ -27,17 +27,27 @@ VIRTUAL_HEIGHT = 288
 
 -- background image and starting scroll location (X axis)
 local background = love.graphics.newImage('background.png')
+-- we need this to know how much we want the background to scroll
+-- if the value is 0 we get no background scroll
+-- We also want to scroll just the x axis
 local backgroundScroll = 0
 
 -- ground image and starting scroll location (X axis)
 local ground = love.graphics.newImage('ground.png')
+-- same applies for the ground
 local groundScroll = 0
 
 -- speed at which we should scroll our images, scaled by dt
 local BACKGROUND_SCROLL_SPEED = 30
+-- because the ground is closer to the viewer 
+-- it is supposed to move faster then the background. Like the example
+-- with the moving car the fence and he mountains far behind. So 
+-- the GROUND_SCROLL_SPEED is set hihger than the 
+-- BACKGROUND_SCROLL_SPEED (60 > 30)
 local GROUND_SCROLL_SPEED = 60
 
 -- point at which we should loop our background back to X 0
+-- So the we not "run out" of image as we play
 local BACKGROUND_LOOPING_POINT = 413
 
 function love.load()
@@ -67,8 +77,11 @@ end
 
 function love.update(dt)
     -- scroll background by preset speed * dt, looping back to 0 after the looping point
+    -- dt so that we are frame rate independent
+    -- if we do not do the modulo background looping point we 
+    -- end up running out of image as stated above
     backgroundScroll = (backgroundScroll + BACKGROUND_SCROLL_SPEED * dt) 
-        % BACKGROUND_LOOPING_POINT
+       % BACKGROUND_LOOPING_POINT
 
     -- scroll ground by preset speed * dt, looping back to 0 after the screen width passes
     groundScroll = (groundScroll + GROUND_SCROLL_SPEED * dt) 

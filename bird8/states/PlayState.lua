@@ -8,6 +8,7 @@
     we then go back to the main menu.
 ]]
 
+-- again here we get the inheritance property. We inherit from BaseState
 PlayState = Class{__includes = BaseState}
 
 PIPE_SPEED = 60
