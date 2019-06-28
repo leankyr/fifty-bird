@@ -36,12 +36,18 @@ function PlayState:update(dt)
         -- modify the last Y coordinate we placed so pipe gaps aren't too far apart
         -- no higher than 10 pixels below the top edge of the screen,
         -- and no lower than a gap length (90 pixels) from the bottom
+        -- we randomize the gap height here
+        -- So now as you play the gap between the pipes will randomly
+        -- change between 80 and 100 pixels.
+        -- In case we wanted every round the gap to be different
+        -- we could change the hardcoded GAP_HEIGHT value to different number (eg GAP_HEIGHT = 100)
+        local gap_height = math.random(80, 100)
         local y = math.max(-PIPE_HEIGHT + 10, 
-            math.min(self.lastY + math.random(-20, 20), VIRTUAL_HEIGHT - 90 - PIPE_HEIGHT))
+            math.min(self.lastY + math.random(-20, 20), VIRTUAL_HEIGHT - gap_height - PIPE_HEIGHT))
         self.lastY = y
 
         -- add a new pipe pair at the end of the screen at our new Y
-        table.insert(self.pipePairs, PipePair(y))
+        table.insert(self.pipePairs, PipePair(y, gap_height))
 
         -- reset timer
         self.timer = 0
