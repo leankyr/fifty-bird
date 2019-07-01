@@ -35,9 +35,20 @@ function PlayState:init()
 end
 
 function PlayState:update(dt)
+    -- Transition to Pause State
+    if love.keyboard.wasPressed('p') then
+      gStateMachine:change('pause', {
+        score = self.score,
+        timer = self.timer,
+        bird = self.bird,
+        pipePairs = self.pipePairs,
+        spawnInterval = self.spawnInterval,
+        lastY = self.lastY
+      })
+    end
+    
     -- update timer for pipe spawning
     self.timer = self.timer + dt
-
     -- spawn a new pipe pair every second and a half
         -- spawnInterval = 1.5 + math.random() 
     -- print('spawnInterval is:', spawnInterval)
@@ -139,9 +150,19 @@ end
 --[[
     Called when this state is transitioned to from another state.
 ]]
-function PlayState:enter()
+function PlayState:enter(params)
     -- if we're coming from death, restart scrolling
     scrolling = true
+    if params ~= nil then
+      self.score = params.score
+      self.timer = params.timer
+      self.bird = params.bird
+      self.pipePairs = params.pipePairs
+      self.spawnInterval = params.spawnInterval
+      self.lastY = params.lastY
+    end
+    --self.score = params.score
+    --self.timer = params.timer
 end
 
 --[[
