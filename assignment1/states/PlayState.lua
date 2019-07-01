@@ -143,6 +143,8 @@ function PlayState:render()
 
     love.graphics.setFont(flappyFont)
     love.graphics.print('Score: ' .. tostring(self.score), 8, 8)
+    love.graphics.setFont(mediumFont)
+    love.graphics.print('Press \'p\' to Pause the game', 8, 32)
 
     self.bird:render()
 end

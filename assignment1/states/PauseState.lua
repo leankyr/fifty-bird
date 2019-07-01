@@ -27,17 +27,17 @@ end
 
 function PauseState:render()
 
-  love.graphics.printf('GAME IS PAUSED\nPRESS p TO RESUME', 0, 70, VIRTUAL_WIDTH, 'center')
-
-  love.graphics.printf('Score: ' ..tostring(self.score), 0, 130, VIRTUAL_WIDTH, 'center')
-
-
   -- to render the bird
   self.bird:render() 
   -- to render the pipes
   for k, pair in pairs(self.pipePairs) do
     pair:render()
   end
- 
+  
+  -- to print messeages
+  love.graphics.printf('GAME IS PAUSED\nPRESS p TO RESUME', 0, 70, VIRTUAL_WIDTH, 'center')
+
+  love.graphics.printf('Score: ' ..tostring(self.score), 0, 130, VIRTUAL_WIDTH, 'center')
+
 end 
 
